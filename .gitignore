@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+group.json
+vendor
+tmp
+test
+db
+lib
