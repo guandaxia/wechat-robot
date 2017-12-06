@@ -66,5 +66,7 @@ return [
         'appid'     =>  'FgMq6U5zwVtBecqj94rOG9Ot-gzGzoHsz',
         'appkey'    => 'vmmcyEE3ucEvpbtDOlG6uH1P',
         'masterkey' =>  'tCtcLw1fKowUmTc2sSRWpti7',
-    ]
+    ],
+
+    'weatherPath' => $path . "/weather/",
 ];

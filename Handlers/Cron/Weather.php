@@ -20,8 +20,8 @@ class Weather
         $path = realpath(vbot("config")['path'])."/weather/";
 //        self::$weather->send();
         $now = Carbon::now(new \DateTimeZone("Asia/Shanghai"));
-        $time = $now->toTimeString();
-        vbot('console')->log('weather '. $time);
+
+        $time = strtotime($now);
 //        $today = Carbon::today()->toTimeString();
         $today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 
@@ -31,8 +31,10 @@ class Weather
             $setTimeArr = json_decode($setTimeArr, true);
             foreach ($setTimeArr as $key=>$item) {
                 $userName = $item['user_name'];
+//                vbot('console')->log('天气配置信息:'. json_encode($item, JSON_UNESCAPED_UNICODE));
                 //达到发送时间
-                if($item['send_time'] < $today && $time > $item['set_time']){
+                if($item['send_time'] < $today && $time > strtotime($item['set_time'])){
+                    vbot('console')->log('info');
                     $city = $item['city'];
                     $weatherInfo = WeatherService::getWeather($city);
 
@@ -46,9 +48,10 @@ class Weather
                         $oldWeather = json_decode($oldWeather, true);
                         array_unshift($weatherInfo, $oldWeather);
                     }
-                    $message = '';
+                    $message = $item['city']."天气：\r\n";
                     foreach ($weatherInfo as $info) {
-                        $message .= "日期：".$info['date']. "\r\n".
+                        $message .=
+                            "日期：".$info['date']. "\r\n".
                             "天气：". $info['weather']. "\r\n".
                             "温度：". $info['temperature']. "\r\n".
                             "风力：". $info['wind']. "\r\n".
