@@ -73,7 +73,7 @@ class BikeContact
                 }
             }
         }
-        elseif (preg_match('/^\d{5,10}\s*\d{4}$|^\d{5,10}$/', $message['content'], $match)) {
+        elseif (preg_match('/^\d{5,8}\s*\d{4}$|^\d{5,8}$/', $message['content'], $match)) {
             //ofo密码查询
             vbot('console')->log('ofo');
             $message = $match[0];
