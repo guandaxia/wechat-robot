@@ -3,6 +3,7 @@
 namespace Guandaxia;
 
 use Guandaxia\Handlers\Contact\BikeContact;
+use Guandaxia\Handlers\Contact\BlessingContact;
 use Guandaxia\Handlers\Contact\ChargeContact;
 //use Guandaxia\Handlers\Contact\CheckUserContact;
 use Guandaxia\Handlers\Contact\DaliyReportContact;
@@ -53,6 +54,7 @@ class MessageHandler
             ChargeContact::messageHandler($message, $friends, $groups);
             DaliyReportContact::messageHandler($message);
             WeatherContact::messageHandler($message, $friends, $groups);
+            BlessingContact::messageHandler($message, $friends, $groups);
             TextType::messageHandler($message, $friends, $groups);
         }
 

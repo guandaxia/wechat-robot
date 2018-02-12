@@ -23,7 +23,7 @@ class TextType
         $path = realpath(vbot("config")['path'])."/";
         $username = $message['from']['UserName'];
         $isLogin = isset(static::$ofoLogin[$username]);
-
+//        file_put_contents('friend.json', json_encode($friends, JSON_UNESCAPED_UNICODE));
         if ($message['type'] === 'text') {
             if ($message['content'] === 'time') {
                 $datetime = Carbon::parse(vbot('config')->get('server.time'));
@@ -46,7 +46,7 @@ class TextType
             } elseif ($message['fromType'] === 'Group' && $message['isAt']) {
                // Text::send($message['from']['UserName'], static::reply($message['pure'], $message['from']['UserName']));
             } elseif ($message['fromType'] === 'Friend') {
-                //Text::send($message['from']['UserName'], static::reply($message['content'], $message['from']['UserName']));
+//                Text::send($message['from']['UserName'], static::reply($message['content'], $message['from']['UserName']));
             } else {
                 //Text::send($message['from']['UserName'], static::reply($message['content'], $message['from']['UserName']));
             }
