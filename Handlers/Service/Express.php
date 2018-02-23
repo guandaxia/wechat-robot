@@ -14,6 +14,7 @@ use LeanCloud\Client;
 use LeanCloud\CloudException;
 use LeanCloud\Object;
 use LeanCloud\Query;
+use Symfony\Component\Translation\Exception\RuntimeException;
 
 class Express
 {
@@ -38,7 +39,13 @@ class Express
         $date->format('Y-m-d');
         $query = new Query("Express");
         $query->greaterThanOrEqualTo("updatedAt", $date);
-        $expressList = $query->find();
+        try{
+            $expressList = $query->find();
+        }catch (RuntimeException $exception){
+            vbot('console')->log('express query error:'. $exception->getMessage());
+            return [];
+        }
+
         if(empty($expressList)){
             return [];
         }
@@ -77,7 +84,7 @@ class Express
                     vbot('console')->log('保存快递信息失败：'.$ex->getMessage());
                 }
 
-                $expressInfo = '';
+                $expressInfo = "📦您的快递信息更新了\r\n";
                 foreach ($newExpressInfo as $key=>$info) {
                     if($key == 0){
                         $expressInfo .= sprintf("👉%s %s\r\n\r\n", $info['time'], $info['context']);

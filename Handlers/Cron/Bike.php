@@ -31,24 +31,24 @@ class Bike
             $ordernum = $result['ordernum'];
             //经过了两百秒
             if($refreshTime < 3400){
-                $ofoBike->end($ordernum);
-                vbot('console')->log('ofo订单结束');
-                $ofoBike->pay($ordernum);
-                vbot('console')->log('ofo订单支付成功');
+//                $ofoBike->end($ordernum);
+//                vbot('console')->log('ofo订单结束');
+//                $ofoBike->pay($ordernum);
+//                vbot('console')->log('ofo订单支付成功');
             }
 
         }else{
             $orderInfo = json_decode($orderInfo, true);
 
             if(!empty($orderInfo['time']) && $orderInfo['time'] + 120 < time()){
-                //下单时间超过180秒
-                $ofoBike->end();
-                vbot('console')->log('ofo订单结束');
-                $result = $ofoBike->pay();
-                vbot('console')->log('ofo订单支付成功');
-                if($result['code'] == 0){
-                    Text::send($orderInfo['user_name'], $result['msg']);
-                }
+//                //下单时间超过180秒
+//                $ofoBike->end();
+//                vbot('console')->log('ofo订单结束');
+//                $result = $ofoBike->pay();
+//                vbot('console')->log('ofo订单支付成功');
+//                if($result['code'] == 0){
+//                    Text::send($orderInfo['user_name'], $result['msg']);
+//                }
             }
         }
     }

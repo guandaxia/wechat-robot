@@ -108,12 +108,13 @@ class OfoBike
         }
 
         //随机伪造经纬度
-        $lat = '35.68'.mt_rand(0, 999);
-        $lng = '139.68'. mt_rand(0, 999);
+        $lat = '38.938'.mt_rand(0, 999);
+        $lng = '117.363'. mt_rand(0, 999);
 
         $url = "https://san.ofo.so/ofo/Api/v2/carno";
         $params = [
-            'source' => 0,
+            'source' => -1,
+            'smart' =>  1,
             'token' =>  $token,
             'carno' => $carno,
             'lat'   =>  $lat,
@@ -227,8 +228,8 @@ class OfoBike
 
         $url = "https://san.ofo.so/ofo/Api/v2/pay";
         //随机伪造经纬度
-        $lat = '35.68'.mt_rand(0, 999);
-        $lng = '139.68'. mt_rand(0, 999);
+        $lat = '38.938'.mt_rand(0, 999);
+        $lng = '117.363'. mt_rand(0, 999);
         $params = [
             'source' => 0,
             'orderno' => $orderno,
@@ -252,48 +253,6 @@ class OfoBike
             ];
         }
         return $data;
-    }
-
-    //获取报修类型
-    public function repair($orderno = '')
-    {
-        $token = file_get_contents($this->tokenName);
-        if(empty($token)){
-            $data = [
-                'code'  =>  1,
-                'msg'   =>  '请先登录',
-            ];
-            return $data;
-        }
-
-        if(empty($orderno)){
-            $orderInfo = vbot('cache')->pull($this->orderInfoCache);
-            $orderInfo = json_decode($orderInfo, true);
-            $orderno = $orderInfo['order_no'];
-        }
-
-        $url = "https://san.ofo.so/ofo/Api/dict";
-        $params = [
-            'source' => 0,
-            'orderno' => $orderno,
-            'token' => $token,
-        ];
-        $result = $this->http($url, $params);
-        vbot('console')->log(json_encode($result));
-        if($result['errorCode'] == 200){
-            $msg = $result['values']['info'];
-            $data = [
-                'code'  =>  0,
-                'msg'   =>  $msg,
-            ];
-        }else{
-            $data = [
-                'code'  =>  $result['errorCode'],
-                'msg'   =>  $result['msg'],
-            ];
-        }
-        return $data;
-
     }
 
     public function unfinished()
@@ -338,8 +297,9 @@ class OfoBike
         if (empty($url)) {
             return [];
         }
-
+        vbot('console')->log('url:'.$url, 'params:'.json_encode($params));
         $result = vbot('http')->post($url, $params);
+        vbot('console')->log('result:'.$result);
         $result = json_decode($result, true);
         return $result;
     }
