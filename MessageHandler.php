@@ -10,6 +10,7 @@ use Guandaxia\Handlers\Contact\DaliyReportContact;
 use Guandaxia\Handlers\Contact\ExpressContact;
 use Guandaxia\Handlers\Contact\TrainContact;
 use Guandaxia\Handlers\Contact\WeatherContact;
+use Guandaxia\Handlers\Type\ShareType;
 use Hanson\Vbot\Contact\Friends;
 use Hanson\Vbot\Contact\Groups;
 use Hanson\Vbot\Contact\Members;
@@ -124,14 +125,13 @@ class MessageHandler
 //            Text::send($message['from']['UserName'], '收到文件：'.$message['title']);
 //        }
 
-        if ($message['type'] === 'mina') {
-            Text::send($message['from']['UserName'], '收到小程序：'.$message['title'].$message['url']);
-        }
-
-//        if ($message['type'] === 'share') {
-//            Text::send($message['from']['UserName'], '收到分享:'.$message['title'].$message['description'].
-//                $message['app'].$message['url']);
+//        if ($message['type'] === 'mina') {
+//            Text::send($message['from']['UserName'], '收到小程序：'.$message['title'].$message['url']);
 //        }
+
+        if ($message['type'] === 'share') {
+            ShareType::messageHandler($message, $friends, $groups);
+        }
 
 //        if ($message['type'] === 'card') {
 //            Text::send($message['from']['UserName'], '收到名片:'.$message['avatar'].$message['province'].
