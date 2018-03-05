@@ -2,6 +2,7 @@
 
 namespace Guandaxia;
 
+use Hanson\Vbot\Message\Text;
 use Hanson\Vbot\Support\File;
 
 class Observer
@@ -23,6 +24,9 @@ class Observer
 
     public static function setExitObserver()
     {
+        $friends = vbot('friends');
+        $userName = $friends->getUsernameByNickname('管思旭');
+        Text::send($userName, '小号退出');
         vbot('console')->log('退出程序', '系统消息');
     }
 
@@ -39,6 +43,9 @@ class Observer
 
     public static function setNeedActivateObserver()
     {
+        $friends = vbot('friends');
+        $userName = $friends->getUsernameByNickname('管思旭');
+        Text::send($userName, '小号快挂了');
         vbot('console')->log('准备挂了，但应该能抢救一会', '系统消息');
     }
 
