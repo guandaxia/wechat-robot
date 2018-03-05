@@ -6,3 +6,7 @@ tmp
 test
 db
 lib
+._.git
+index.php
+friend.json
+tmp/weather/*

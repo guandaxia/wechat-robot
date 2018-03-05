@@ -2,6 +2,7 @@
 
 namespace Guandaxia;
 
+// use Guansixu\train\Train;
 use Hanson\Vbot\Foundation\Vbot;
 
 class VbotHandler
@@ -39,6 +40,10 @@ class VbotHandler
 
         $robot->observer->setNeedActivateObserver([Observer::class, 'setNeedActivateObserver']);
 
+//        $robot->messageExtension->load([
+//            // some extensions
+//            Train::class,
+//        ]);
         $robot->server->serve();
     }
 }

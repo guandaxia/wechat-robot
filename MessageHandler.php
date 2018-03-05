@@ -124,14 +124,14 @@ class MessageHandler
 //            Text::send($message['from']['UserName'], '收到文件：'.$message['title']);
 //        }
 
-        if ($message['type'] === 'mina') {
-            Text::send($message['from']['UserName'], '收到小程序：'.$message['title'].$message['url']);
-        }
-
-//        if ($message['type'] === 'share') {
-//            Text::send($message['from']['UserName'], '收到分享:'.$message['title'].$message['description'].
-//                $message['app'].$message['url']);
+//        if ($message['type'] === 'mina') {
+//            Text::send($message['from']['UserName'], '收到小程序：'.$message['title'].$message['url']);
 //        }
+
+        if ($message['type'] === 'share') {
+            Text::send($message['from']['UserName'], '收到分享:'.$message['title'].$message['description'].
+                $message['app'].$message['url']);
+        }
 
 //        if ($message['type'] === 'card') {
 //            Text::send($message['from']['UserName'], '收到名片:'.$message['avatar'].$message['province'].
