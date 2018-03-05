@@ -2,7 +2,7 @@
 
 namespace Guandaxia;
 
-// use Guansixu\train\Train;
+use Guansixu\train\Train;
 use Hanson\Vbot\Foundation\Vbot;
 
 class VbotHandler

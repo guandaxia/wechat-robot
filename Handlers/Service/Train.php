@@ -49,8 +49,8 @@ class Train
             $startTime = $timeInfo[0]['start_time'];                    //开车时间
 
             $string = <<<EOF
-    车次：$trainNumber 始发站：$startStation  终到站：$endStation 
-————————————— 
+    车次：$trainNumber 始发站：$startStation  终到站：$endStation
+—————————————
     车站          到时      开时   停留
 ------------------------
 

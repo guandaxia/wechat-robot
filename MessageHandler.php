@@ -10,6 +10,7 @@ use Guandaxia\Handlers\Contact\DaliyReportContact;
 use Guandaxia\Handlers\Contact\ExpressContact;
 use Guandaxia\Handlers\Contact\TrainContact;
 use Guandaxia\Handlers\Contact\WeatherContact;
+use Guandaxia\Handlers\Type\ShareType;
 use Hanson\Vbot\Contact\Friends;
 use Hanson\Vbot\Contact\Groups;
 use Hanson\Vbot\Contact\Members;
@@ -129,8 +130,7 @@ class MessageHandler
 //        }
 
         if ($message['type'] === 'share') {
-            Text::send($message['from']['UserName'], '收到分享:'.$message['title'].$message['description'].
-                $message['app'].$message['url']);
+            ShareType::messageHandler($message, $friends, $groups);
         }
 
 //        if ($message['type'] === 'card') {
