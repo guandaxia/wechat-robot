@@ -2,6 +2,7 @@
 
 namespace Guandaxia;
 
+use Hanson\Vbot\Message\Text;
 use Hanson\Vbot\Support\File;
 
 class Observer

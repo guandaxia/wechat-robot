@@ -6,5 +6,7 @@ tmp
 test
 db
 lib
+._.git
 index.php
-tianjin/*
+friend.json
+tmp/weather/*
