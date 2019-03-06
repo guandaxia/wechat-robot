@@ -7,7 +7,9 @@ use Guandaxia\Handlers\Contact\BlessingContact;
 use Guandaxia\Handlers\Contact\ChargeContact;
 //use Guandaxia\Handlers\Contact\CheckUserContact;
 use Guandaxia\Handlers\Contact\DaliyReportContact;
+use Guandaxia\Handlers\Contact\ExperienceGroup;
 use Guandaxia\Handlers\Contact\ExpressContact;
+use Guandaxia\Handlers\Contact\GoodsContact;
 use Guandaxia\Handlers\Contact\TrainContact;
 use Guandaxia\Handlers\Contact\WeatherContact;
 use Guandaxia\Handlers\Type\ShareType;
@@ -48,14 +50,15 @@ class MessageHandler
 
         if($message['type'] == 'text'){
 //            FeedbackGroup::messageHandler($message, $friends, $groups);
-//            ExperienceGroup::messageHandler($message, $friends, $groups);
+            ExperienceGroup::messageHandler($message, $friends, $groups);
             TrainContact::messageHandler($message, $friends, $groups);
             ExpressContact::messageHandler($message, $friends, $groups);
             BikeContact::messageHandler($message, $friends, $groups);
             ChargeContact::messageHandler($message, $friends, $groups);
             DaliyReportContact::messageHandler($message);
             WeatherContact::messageHandler($message, $friends, $groups);
-            BlessingContact::messageHandler($message, $friends, $groups);
+//            BlessingContact::messageHandler($message, $friends, $groups);
+            GoodsContact::messageHandler($message, $friends, $groups);
             TextType::messageHandler($message, $friends, $groups);
         }
 
