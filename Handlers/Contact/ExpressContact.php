@@ -26,11 +26,11 @@ class ExpressContact
 
             Text::send($username, '🔎快递信息正在查询中……');
             $express = new Express();
-            $result = $express->query($message);
+            $result = $express->query($nickName, $message);
             Text::send($username, $result);
 
             //保存查询单号，方便定时查询
-            $express->saveNumber($nickName, $message);
+//            $express->saveNumber($nickName, $message);
         }
     }
 
