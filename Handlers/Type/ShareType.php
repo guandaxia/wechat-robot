@@ -25,8 +25,8 @@ class ShareType
             $url = $message['url'];
             $urlInfo = parse_url($url);
             if($urlInfo['host'] !== 'common.ofo.so'){
-                Text::send($username, '收到分享:'.$message['title'].$message['description'].
-                $message['app'].$message['url']);
+//                Text::send($username, '收到分享:'.$message['title'].$message['description'].
+//                $message['app'].$message['url']);
                 return;
             }
 
