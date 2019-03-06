@@ -28,14 +28,13 @@ class GoodsContact
                 print_r($result);
                 vbot('console')->log('优惠券信息:');
                 vbot('console')->log(json_encode($result, JSON_UNESCAPED_UNICODE));
+                Text::send($message['from']['UserName'], '找到优惠券了~');
                 $resultMessage = <<<EOF
-找到优惠券了~
 商品金额：{$result->origin_price}
 优惠券金额：{$result->quan_price}
 券后金额：{$result->current_price}
 口令： {$result->token}
 EOF;
-                echo $resultMessage;
                 Text::send($message['from']['UserName'], $resultMessage);
             } catch (\Exception $e) {
                 Text::send($message['from']['UserName'], '系统错误'.$e->getMessage());

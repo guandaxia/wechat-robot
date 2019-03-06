@@ -117,7 +117,7 @@ class GoodsService
         ]);
         if ($result->errcode != 0) {
             // 获取优惠券错误
-            return $result->errmsg;
+            throw new \Exception('获取优惠券错误:'. $result->errmsg);
         }
 //        dump($result);
 //        $couponInfo['coupon_code'] = $result->data->token;
