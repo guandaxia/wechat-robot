@@ -34,7 +34,7 @@ class ShareType
             list($ordernum, $key) = explode('/', $fragment);
 
             $url = 'https://san.ofo.so/ofo/Api/v2/getPacket';
-            $tel = "";
+            $tel = "你的手机号";
 
             $curl = new Curl();
             $curl->post($url, compact('ordernum', 'key', 'tel'));
@@ -47,6 +47,9 @@ class ShareType
                 if($response['errorCode'] == 200){
                     $amounts = $response['values']['packetList'][0]['amounts'];
                     Text::send($username, "领取红包成功，金额：{$amounts}元");
+                }else{
+                    //20001   手机号不合法
+                    Text::send($username, $response['msg']);
                 }
             }
         }
