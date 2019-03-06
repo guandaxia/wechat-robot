@@ -25,7 +25,6 @@ class GoodsContact
             $goodsService = new GoodsService();
             try {
                 $result = $goodsService->getGoodsInfo($message['content']);
-                print_r($result);
                 vbot('console')->log('优惠券信息:');
                 vbot('console')->log(json_encode($result, JSON_UNESCAPED_UNICODE));
                 Text::send($message['from']['UserName'], '找到优惠券了~');
