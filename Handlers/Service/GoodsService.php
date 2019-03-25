@@ -48,7 +48,7 @@ class GoodsService
             // 获取优惠券错误
             throw new \Exception('获取商品信息错误：'.$result->errmsg);
         }
-        return $result->data;
+        return $result->result->data;
 
 
     }
