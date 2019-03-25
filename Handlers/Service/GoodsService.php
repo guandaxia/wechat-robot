@@ -15,12 +15,12 @@ class GoodsService
     private $appKey;
     private $pid;
 
-    public function __construct($pid = 'mm_119302567_361000046_100110900291')
+    public function __construct($pid = 'mm_111976025_372050492_106383600451')
     {
 
 //        $this->appKey = '5rto1sxq';
         $this->appKey = '4d16534a-8b15-81b5-79ae-eb101e7db320';
-        $this->pid    = $pid ?? 'mm_119302567_361000046_100110900291';
+        $this->pid    = $pid ?? 'mm_111976025_372050492_106383600451';
         $this->curl   = new Curl();
     }
 
