@@ -27,13 +27,18 @@ class GoodsContact
                 $result = $goodsService->getCouponInfo($match[0]);
                 vbot('console')->log('优惠券信息:');
                 vbot('console')->log(json_encode($result, JSON_UNESCAPED_UNICODE));
-                Text::send($message['from']['UserName'], '找到优惠券了~');
-                $resultMessage = <<<EOF
+                if($result->has_coupon == false){
+                    Text::send($message['from']['UserName'], '未找到优惠券');
+                    Text::send($message['from']['UserName'], '返利链接为：'. $result->tpwd);
+                }else{
+                    Text::send($message['from']['UserName'], '找到优惠券了~');
+                    $resultMessage = <<<EOF
 优惠券信息：{$result->coupon_info}
 优惠券金额：{$result->youhuiquan}
 口令： {$result->tpwd}
 EOF;
-                Text::send($message['from']['UserName'], $resultMessage);
+                    Text::send($message['from']['UserName'], $resultMessage);
+                }
             } catch (\Exception $e) {
                 Text::send($message['from']['UserName'], '系统错误'.$e->getMessage());
             }
