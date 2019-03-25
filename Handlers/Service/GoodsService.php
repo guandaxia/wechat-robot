@@ -32,7 +32,6 @@ class GoodsService
      */
     public function getCouponInfo($taobaoCode)
     {
-        $url = "";
         $url = 'https://api.open.21ds.cn/apiv1/getitemgyurlbytpwd';
         $data = [
             'apkey' =>  $this->appKey,
@@ -45,7 +44,7 @@ class GoodsService
 
         $result = $this->curl->get($url, $data);
 
-        if ($result->errcode != 0) {
+        if ($result->code != 200) {
             // 获取优惠券错误
             throw new \Exception('获取商品信息错误：'.$result->errmsg);
         }
