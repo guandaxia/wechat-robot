@@ -18,9 +18,40 @@ class GoodsService
     public function __construct($pid = 'mm_119302567_361000046_100110900291')
     {
 
-        $this->appKey = '5rto1sxq';
+//        $this->appKey = '5rto1sxq';
+        $this->appKey = '4d16534a-8b15-81b5-79ae-eb101e7db320';
         $this->pid    = $pid ?? 'mm_119302567_361000046_100110900291';
         $this->curl   = new Curl();
+    }
+
+    /**
+     * 获取优惠券
+     * @param $taobaoCode
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getCouponInfo($taobaoCode)
+    {
+        $url = "";
+        $url = 'https://api.open.21ds.cn/apiv1/getitemgyurlbytpwd';
+        $data = [
+            'apkey' =>  $this->appKey,
+            'tpwdcode' => $taobaoCode,
+            'pid'   =>  $this->pid,
+            'tbname' => '管思旭',
+            'shorturl' => 1,
+            'tpwd' => 1,
+        ];
+
+        $result = $this->curl->get($url, $data);
+
+        if ($result->errcode != 0) {
+            // 获取优惠券错误
+            throw new \Exception('获取商品信息错误：'.$result->errmsg);
+        }
+        return $result->data;
+
+
     }
 
     /**
