@@ -17,12 +17,7 @@ class WeatherContact
 {
     public static function messageHandler(Collection $message, Friends $friends, Groups $groups)
     {
-        if (strpos($message['content'], '天气') === 0) {
-            $username = $message['from']['UserName'];
-            $nickName = $message['from']['NickName'];
-            $orderInfo = explode(' ', $message['content']);
-            if(count($orderInfo) == 1){
-                $info = <<<EOF
+        $helpStr = <<<EOF
 命令: 天气
 参数:
 
@@ -33,7 +28,12 @@ class WeatherContact
     取消   取消发送天气
           
 EOF;
-                Text::send($username, $info);
+        if (strpos($message['content'], '天气') === 0) {
+            $username = $message['from']['UserName'];
+            $nickName = $message['from']['NickName'];
+            $orderInfo = explode(' ', $message['content']);
+            if(count($orderInfo) == 1){
+                Text::send($username, $helpStr);
                 return;
             }
 
@@ -58,6 +58,8 @@ EOF;
                     //取消
                     $result = self::cancelWeather($nickName);
                     break;
+                default:
+                    $result = "未知指令\n". $helpStr;
             }
             Text::send($username, $result);
         }
