@@ -20,7 +20,7 @@ class Weather
 
     public function __construct()
     {
-        self::$weatherPath = vbot("config")['weatherPath'];
+        self::$weatherPath = realpath(vbot("config")['weatherPath']);
     }
 
     public static function getWeather($city)
