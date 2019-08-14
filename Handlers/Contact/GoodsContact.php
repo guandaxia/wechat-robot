@@ -18,7 +18,7 @@ class GoodsContact
 {
     public static function messageHandler(Collection $message, Friends $friends, Groups $groups)
     {
-        $count = preg_match('/￥.+￥|₳.+₳|¢.+¢|₤.+₤|€.+€|₴.+₴|$.+$/', $message['content'], $match);
+        $count = preg_match('/￥.+￥|₳.+₳|¢.+¢|₤.+₤|€.+€|₴.+₴|\$.+\$/', $message['content'], $match);
         if ($count >= 1) {
             Text::send($message['from']['UserName'], '正在查找优惠券');
             //淘口令
